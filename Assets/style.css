@@ -80,7 +80,7 @@ header {
     margin-right: 7px;
 }
 
-#answer-btn {
+.quiz-choices {
     padding: 8px;
     margin-top: 10px;
     background-image: url(./images/Surf\ Report\ copy.jpeg);
@@ -89,7 +89,7 @@ header {
     color: aliceblue;
 }
 
-#answer-btn:hover {
+.quiz-choices:hover {
     filter: brightness(85%);
 }
 
