@@ -137,6 +137,38 @@ footer {
     border-radius: 8px;
 }
 
+.user-input {
+    margin-left: 200px;
+}
+
+.initials-styling {
+    margin-left: 200px;
+}
+
+.final-results {
+    margin-left: 220px;
+}
+
+.end-result {
+    margin-left: 220px;
+}
+
+.initials {
+    margin-left: 220px;
+}
+
+.next-btn {
+    color: aliceblue;
+    padding: 5px;
+    font-size: 15px;
+    margin-top: 5px;
+    margin: 15px;
+    background-color: rgba(179, 124, 171, 0.712);
+    border-color: aliceblue;
+    border-style: hidden;
+    border-radius: 8px;
+}
+
 #restart-btn {
     color: aliceblue;
     padding: 5px;

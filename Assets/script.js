@@ -1,12 +1,14 @@
 var quizBox = document.getElementById('quiz-box').style = 'display: none;'
 var startBtn = document.getElementById('start-btn');
-var questions = document.getElementById('question-text');
-var answerOptions = document.getElementsByClassName('answer-options');
-var result = document.getElementById('results');
+var questions = document.querySelector('.question-text');
+var answerOptions = document.querySelector('.quiz-choices');
+var scoreText = document.querySelector('.scoreText');
 var nextBtn = document.getElementById('next-btn');
 var restartBtn = document.getElementById('restart-btn');
-var timerText = document.getElementById('time-text');
+var timerText = document.querySelector('.time-text');
 var seconds = 60;
+var currentIndex = 0;
+var score = 0;
 
 //question & answer array
 var questionsAll = [
@@ -23,8 +25,8 @@ var questionsAll = [
 },
 {
     question: 'What does the === operator represent?',
-    correctAnswer: 'equal value and equal type',
-    choices: ['equal to', 'ternary operator', 'equal value and equal type', 'typeof',],
+    correctAnswer: 'Equal value and equal type',
+    choices: ['Equal to', 'Ternary operator', 'Equal value and equal type', 'Typeof',],
 },
 {
     question: 'What is Null in Javascript?',
@@ -34,23 +36,112 @@ var questionsAll = [
 
 //functionality that displays questions & answer options
 function init() {
+    console.log("init")
     questions.style = 'display: block;'
     answerOptions.style = 'display: block;'
     nextBtn.style = 'display:block;'
     renderQuiz();
 }
 
+//functionality for displaying variables from array
 function renderQuiz() {
-    questions.textContent = questionsAll[currentIndex].question;
-    answerOptions.textContent = questionsAll[currentIndex].choices;
-    result.textContent = questionsAll[currentIndex].correctAnswer;
+    questions.textContent = questionsAll[currentIndex].question; 
+    questionsAll[currentIndex].choices.forEach(element => {
+        var btn = document.createElement('button')
+        btn.classList.add("quiz-choices")
+        btn.innerHTML = element;
+        document.getElementById("answer").appendChild(btn);
+
+        btn.addEventListener('click', function () {
+            var winningAnswer = questionsAll[currentIndex].correctAnswer;
+             if (btn.textContent === winningAnswer) {
+                 alert("Correct Answer!")
+                 score = score + 10
+                 scoreText.textContent = "Score: " + score;
+             } else {
+                 alert("Wrong Answer!")
+             } 
+        })
+    })
+    
 }
+
+//functionality for next button & looping through array
+nextBtn.addEventListener('click', function() {
+    console.log(currentIndex);
+
+    var nextIndex = currentIndex + 1;
+// for loop functionality
+    if (currentIndex <= 2) {
+        currentIndex ++
+    
+    questions.textContent = questionsAll[nextIndex].question; 
+    questionsAll[nextIndex].choices.forEach(element => {
+        var previousBtn = document.querySelector(".quiz-choices")
+        var btn = document.createElement('button')
+        previousBtn.replaceWith(btn)
+        btn.classList.add("quiz-choices")
+        btn.innerHTML = element;
+        document.getElementById("answer").appendChild(btn);
+
+        btn.addEventListener('click', function () {
+            var winningAnswer = questionsAll[nextIndex].correctAnswer;
+             if (btn.textContent === winningAnswer) {
+                 alert("Correct Answer!")
+                 score = score + 10
+                 scoreText.textContent = "Score: " + score;
+             } else {
+                 alert("Wrong Answer!")
+             } 
+        })
+    })
+    } else { //functionality for final submission page 
+        var container = document.getElementById("answer");
+        var userInput = document.createElement('input');
+        userInput.classList.add('user-input');
+        container.replaceWith(userInput);
+        var initials = document.createElement("h3");
+        initials.textContent = "Enter Your Initials";
+        questions.replaceWith(initials);
+        initials.classList.add('initials-styling');
+
+        var btn = document.createElement('button')
+        nextBtn.replaceWith(btn)
+        btn.classList.add("next-btn")
+        btn.textContent = "Submit"
+
+        btn.addEventListener("click", function () {
+            var endResult = userInput.value + ": " + score;
+            scoreText.replaceWith(endResult);
+            userInput.remove();
+            var finalScore = document.createElement("h3");
+            finalScore.textContent = "Final Score!";
+            finalScore.classList.add('final-results');
+            initials.replaceWith(finalScore)
+        })
+    }
+})
 
 //functionality to start quiz once clicking 'start quiz' button and other start functions
 startBtn.addEventListener('click', function () {
+    seconds = 60;
     var quizBox = document.getElementById('quiz-box').style = 'display: block;'
     timer();
+    renderQuiz();
+    userScore()
 })
+
+//functionality for moving through array with next button
+answerOptions.addEventListener('click', function () {
+    var winningAnswer = questionsAll[currentIndex].correctAnswer;
+    console.log(winningAnswer);
+})
+
+//functionality for displaying & tracking score 
+function userScore() {
+    console.log(score);
+    scoreText.textContent = "Score: " + score;
+}
 
 // functionality that saves score to local storage
 function saveScore() {
@@ -66,12 +157,16 @@ function saveScore() {
 
 //functionality that runs timer 
 function timer() {
-    var quizTimer = setInterval(function() {
-        if(timerText === 0) {
+    console.log("new changes")
+    var quizTimer = setInterval(function () {
+
+        if(seconds === 0) {
+            console.log("end")
             clearInterval(quizTimer);
             endQuiz();
         }
-        timerText.textContent = timerText.innerHTML + seconds;
+
+        timerText.textContent = 'Time Remaining: ' + seconds;
         seconds--
     }, 1000);
 }
