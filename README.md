@@ -9,3 +9,4 @@ This Javascript Quiz uses HTML, CSS & Vanilla Javascript to do the following:
   * Keeps track of points earned and has a scorecard/score keeper
   * Prompts for quiz taker to submit name and record score at the end 
   * Has a "reset' button option to try again!
+  * Because correct or incorrect answer messaging is set with an alert method, you cannot see it in the screen recording below- but it   is there!
