@@ -20,18 +20,18 @@ var questionsAll = [
 {
     question: 'Which company created Javascript?',
     correctAnswer: 'Netscape',
-    choices: ['Netscape', 'Adobe', 'IBM', 'MSC Software',],
+    choices: ['Netscape', 'Adobe', 'IBM', 'MSC Software', 'Facebook', 'Twillow',],
     
 },
 {
     question: 'What does the === operator represent?',
     correctAnswer: 'Equal value and equal type',
-    choices: ['Equal to', 'Ternary operator', 'Equal value and equal type', 'Typeof',],
+    choices: ['Equal to', 'Ternary operator', 'Equal value and equal type', 'Typeof', 'Less than', 'Null'],
 },
 {
     question: 'What is Null in Javascript?',
     correctAnswer: 'Intentional absence of object value',
-    choices: ['Broken code', 'A function', 'Intentional absence of object value', 'A Javascript variable',],   
+    choices: ['Broken code', 'A function', 'Intentional absence of object value', 'A Javascript variable', 'A method', 'An Error'],   
 }];
 
 //functionality that displays questions & answer options
