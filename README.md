@@ -11,7 +11,7 @@ This Javascript Quiz uses HTML, CSS & Vanilla Javascript to do the following:
   * Prompts for quiz taker to submit name and record score at the end 
   * Has a "reset' button option to try again!
   * Because correct or incorrect answer messaging is set with an alert method, you cannot see it in the screen recording below- but it   is there!
-  * There are also areas that I am currently unable to figure out (both highlighted at end of screen recording)
+  * There are also areas that I am currently unable to figure out (some highlighted at end of screen recording)
 
    1). Cannot get final logged initials with score to center in quiz box at the very end (was created with document.createElement)
    
