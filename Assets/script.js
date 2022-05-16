@@ -34,16 +34,7 @@ var questionsAll = [
     choices: ['Broken code', 'A function', 'Intentional absence of object value', 'A Javascript variable', 'A method', 'An Error'],   
 }];
 
-//functionality that displays questions & answer options
-function init() {
-    console.log("init")
-    questions.style = 'display: block;'
-    answerOptions.style = 'display: block;'
-    nextBtn.style = 'display:block;'
-    renderQuiz();
-}
-
-//functionality for displaying variables from array
+//functionality for displaying variables from array & for loop
 function renderQuiz() {
     questions.textContent = questionsAll[currentIndex].question; 
     questionsAll[currentIndex].choices.forEach(element => {
@@ -84,6 +75,7 @@ nextBtn.addEventListener('click', function() {
         btn.innerHTML = element;
         document.getElementById("answer").appendChild(btn);
 
+//functionality for answer alerts, score additions and timer deductions
         btn.addEventListener('click', function () {
             var winningAnswer = questionsAll[nextIndex].correctAnswer;
              if (btn.textContent === winningAnswer) {
@@ -92,10 +84,11 @@ nextBtn.addEventListener('click', function() {
                  scoreText.textContent = "Score: " + score;
              } else {
                  alert("Wrong Answer!")
+                 seconds = seconds - 10;
              } 
         })
     })
-    } else { //functionality for final submission page 
+    } else { //functionality for information input container 
         var container = document.getElementById("answer");
         var userInput = document.createElement('input');
         userInput.classList.add('user-input');
@@ -105,11 +98,13 @@ nextBtn.addEventListener('click', function() {
         questions.replaceWith(initials);
         initials.classList.add('initials-styling');
 
-        var btn = document.createElement('button')
-        nextBtn.replaceWith(btn)
-        btn.classList.add("next-btn")
-        btn.textContent = "Submit"
+//changing next button to submit button
+        var btn = document.createElement('button');
+        nextBtn.replaceWith(btn);
+        btn.classList.add("next-btn");
+        btn.textContent = "Submit";
 
+//getting the score to display with final result text
         btn.addEventListener("click", function () {
             var endResult = userInput.value + ": " + score;
             scoreText.replaceWith(endResult);
@@ -117,12 +112,12 @@ nextBtn.addEventListener('click', function() {
             var finalScore = document.createElement("h3");
             finalScore.textContent = "Final Score!";
             finalScore.classList.add('final-results');
-            initials.replaceWith(finalScore)
+            initials.replaceWith(finalScore);
         })
     }
 })
 
-//functionality to start quiz once clicking 'start quiz' button and other start functions
+//functionality to start quiz once clicking 'start quiz' button and other functions
 startBtn.addEventListener('click', function () {
     seconds = 60;
     var quizBox = document.getElementById('quiz-box').style = 'display: block;'
@@ -145,14 +140,9 @@ function userScore() {
 
 // functionality that saves score to local storage
 function saveScore() {
-    var currentScores = JSON.parse(localStorage.getItem('results')) || []
-    var name = prompt('Please enter your name:')
-    var userObj = {
-        name,
-        results
-    }
+    var currentScores = JSON.parse(localStorage.getItem('final-results')) || []
     currentScores.push(userObj)
-    localStorage.setItem('results', JSON.stringify(currentScores))
+    localStorage.setItem('final-results', JSON.stringify(currentScores))
 }
 
 //functionality that runs timer 
@@ -161,13 +151,18 @@ function timer() {
     var quizTimer = setInterval(function () {
 
         if(seconds === 0) {
-            console.log("end")
             clearInterval(quizTimer);
-            endQuiz();
         }
 
         timerText.textContent = 'Time Remaining: ' + seconds;
         seconds--
     }, 1000);
 }
+
+//functionality for restart button
+var quizReset = document.querySelector('.restart-btn')
+restartBtn.addEventListener('click', function(){
+   window.location.reload(false);
+  })
+
 
