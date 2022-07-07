@@ -152,6 +152,7 @@ function timer() {
 
         if(seconds === 0) {
             clearInterval(quizTimer);
+            endQuiz();
         }
 
         timerText.textContent = 'Time Remaining: ' + seconds;
@@ -165,4 +166,5 @@ restartBtn.addEventListener('click', function(){
    window.location.reload(false);
   })
 
+  //create a function so on click it resets/clear the game (resents all sorted information and containers)
 
