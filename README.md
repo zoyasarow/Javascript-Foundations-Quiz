@@ -1,4 +1,4 @@
-# Javascript-Quiz
+# Javascript-Foundations-Quiz
 
 Live Link: https://zoyasarow.github.io/Javascript-Quiz/
 
@@ -23,4 +23,4 @@ This Javascript Quiz uses HTML, CSS & Vanilla Javascript to do the following:
 
 https://user-images.githubusercontent.com/101853202/168530178-cd80c66f-5bda-4ea0-9249-65cdcda21ed3.mp4
 
-# Javascript-Foundations-Quiz
+
