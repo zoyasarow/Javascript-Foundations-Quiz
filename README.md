@@ -1,6 +1,6 @@
 # Javascript-Foundations-Quiz
 
-Live Link: https://zoyasarow.github.io/Javascript-Quiz/
+Live Link: https://zoyasarow.github.io/Javascript-Foundations-Quiz/
 
 This Javascript Quiz uses HTML, CSS & Vanilla Javascript to do the following:
   * Begin the quiz with a 'start quiz' button that initalizes the quiz,
